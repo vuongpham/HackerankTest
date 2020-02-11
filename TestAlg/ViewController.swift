@@ -14,7 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //print(bigSorting(unsorted: ["11111112398234820348230420340","3","4","5","2398234820348230420340"]))
         
-        let resultString = supperReduceString1(s: "baabcd")
+        //let resultString = supperReduceString1(s: "baabcd")
+        let resultString = insertSort(s: [2,3,1])
         
         print(resultString)
     }
@@ -96,6 +97,31 @@ class ViewController: UIViewController {
         }
         
         return stack
+    }
+}
+
+extension ViewController {
+    func insertSort(s: [Int]) -> [Int] {
+        
+        var result = s
+        var i: Int = 0
+        
+        while i < result.count - 1 {
+            let value = result[i]
+            var nextIndex = i + 1
+            if value > result[nextIndex]{
+                
+                while nextIndex < i {
+                    result[nextIndex] = result[nextIndex - 1]
+                    nextIndex = nextIndex - 1
+                }
+            }
+            
+            i = i + 1
+
+        }
+        
+        return result
     }
 }
 
