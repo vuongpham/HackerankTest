@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         //let resultString = insertSort(s: [2,3,1])
           //  let result = binarySearchByiteratively(s: [1,3,4,5,8,10], x: 2)
         // let result = binarySearchByRecursively(s: [1,3,4,5,8,10], x: 2, left: 0, right: 6 - 1)
-        let result = interpolationSearchByiteratively(s: [1,3,4,5,8,10], key: 10)
+        // let result = interpolationSearchByiteratively(s: [1,3,4,5,8,10], key: 10)
+        let result = tower(3, "A", "B", "C")
         print(result)
     }
 
@@ -167,4 +168,35 @@ extension ViewController {
         return nil
     }
 
+}
+
+extension ViewController {
+    
+    /// Ha Noi game.
+    ///
+    /// Output: Move all disk from fist colum to three colum just keep the order.
+    /// The rules:
+    ///     1. Each a turn just move a disk.
+    ///     2. Order disk is small disk on big disk.
+    /// - Parameters:
+    ///   - n: number of disk.
+    ///   - a: name first colum.
+    ///   - b: name second colum.
+    ///   - c: name three colum want move disk to
+    /// There is n disk will need at least 2^n – 1 step to finish game.
+    func tower(_ n: Int,_ a: String,_ b: String,_ c: String) {
+        if n == 1 {
+            print(" \(a) -> \(c)")
+            return
+        }
+        
+        // Move n-1 disk from a to b
+        tower(n-1, a, c, b)
+        
+        // Move 1 disk from a to c
+        tower(1, a, b, c)
+        
+        // Move n-1 disk from b to c
+        tower(n-1, b, a, c)
+    }
 }
