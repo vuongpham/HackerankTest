@@ -9,20 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //let resultString = supperReduceString1(s: "baabcd")
         //let resultString = insertSort(s: [2,3,1])
-          //  let result = binarySearchByiteratively(s: [1,3,4,5,8,10], x: 2)
+        //  let result = binarySearchByiteratively(s: [1,3,4,5,8,10], x: 2)
         // let result = binarySearchByRecursively(s: [1,3,4,5,8,10], x: 2, left: 0, right: 6 - 1)
         // let result = interpolationSearchByiteratively(s: [1,3,4,5,8,10], key: 10)
         let result = tower(3, "A", "B", "C")
         print(result)
     }
-
-// https://www.hackerrank.com/challenges/reduced-string/problem
+    
+    // https://www.hackerrank.com/challenges/reduced-string/problem
     func supperReduceString(s: String) -> String {
         var result = ""
         
@@ -30,15 +30,15 @@ class ViewController: UIViewController {
         for charactor in s {
             
             if temp == nil  {
-              temp = charactor
-               result.append(temp!)
+                temp = charactor
+                result.append(temp!)
                 continue
             }
             
             if temp == charactor {
                 temp = nil
                 result.removeLast()
-               continue
+                continue
             }
             result.append(charactor)
             temp = charactor
@@ -62,15 +62,15 @@ class ViewController: UIViewController {
             
             // The first to run
             if temp == nil  {
-               temp = charactor
-               stack.append(temp!)
+                temp = charactor
+                stack.append(temp!)
                 continue
             }
             
             if temp == charactor {
                 stack.removeLast()
                 temp = stack.last
-               continue
+                continue
             }
             stack.append(charactor)
             temp = charactor
@@ -167,7 +167,7 @@ extension ViewController {
         
         return nil
     }
-
+    
 }
 
 extension ViewController {
@@ -198,5 +198,31 @@ extension ViewController {
         
         // Move n-1 disk from b to c
         tower(n-1, b, a, c)
+    }
+}
+
+extension ViewController {
+    // https://app.codility.com/demo/results/trainingJSTFXT-YJ3/
+    func solution(_ N : Int) -> Int {
+        
+        let binary = String(N, radix: 2)
+        print("Binary \(binary)")
+        var  max = 0
+        var counting = 0
+        
+        for char in binary {
+            
+            if char == "0" {
+                counting += 1
+                continue
+            } else {
+                if max < counting {
+                    max = counting
+                }
+                
+                counting = 0
+            }
+        }
+        return max
     }
 }
